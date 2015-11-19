@@ -6,7 +6,7 @@
  * @package PHPMailer
  */
 // PHPMailer読み込み
-require_once './PHPMailer/PHPMailerAutoload.php';
+require_once(__DIR__ . '/PHPMailer/PHPMailerAutoload.php');
 
 class NPHPMailer extends PHPMailer
 {
