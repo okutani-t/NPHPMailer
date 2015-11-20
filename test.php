@@ -4,7 +4,7 @@
  *
  * @author okutani
  */
-// CustomPHPMailer読み込み
+// NPHPMailer読み込み
 require_once './NPHPMailer.class.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ->setBody($myBody)
         ->send();
 
-    // 相手宛
+    // 相手宛(自動返信用)
     NPHPMailer::_()
         #->setSMTP          // サーバーで設定していたら不要
         ->setForm($from)
