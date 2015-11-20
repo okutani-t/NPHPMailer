@@ -114,11 +114,12 @@ class NPHPMailer extends PHPMailer
      *
      * @access public
      * @param string $cc
+     * @param string $name
      * @return object $this
      */
-    public function addCC($cc)
+    public function addCC($cc, $name="")
     {
-        parent::addCC($cc);
+        parent::addCC($cc, $name="");
 
         return $this;
     }
@@ -128,11 +129,12 @@ class NPHPMailer extends PHPMailer
      *
      * @access public
      * @param string $cc
+     * @param string $name
      * @return object $this
      */
-    public function addBCC($bcc)
+    public function addBCC($bcc, $name="")
     {
-        parent::addBCC($bcc);
+        parent::addBCC($bcc, $name="");
 
         return $this;
     }
@@ -141,13 +143,16 @@ class NPHPMailer extends PHPMailer
      * ファイルの添付
      *
      * @access public
-     * @param string $src
+     * @param string $path
      * @param string $name
+     * @param string $encoding File encoding
+     * @param string $type File extension (MIME) type.
+     * @param string $disposition Disposition to use
      * @return object $this
      */
-    public function addAttachment($src, $name="")
+    public function addAttachment($path, $name="", $encoding="base64", $type="", $disposition = "attachment")
     {
-        parent::addAttachment($src, $name);
+        parent::addAttachment($path, $name, $encoding, $type, $disposition);
 
         return $this;
     }
