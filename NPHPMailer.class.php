@@ -220,7 +220,7 @@ class NPHPMailer extends PHPMailer
      */
     public function send()
     {
-        if(!parent::send()) {
+        if (!parent::send()) {
             trigger_error('Mailer Error: ' . $this->ErrorInfo, E_USER_NOTICE);
         }
     }
