@@ -61,11 +61,12 @@ class NPHPMailer extends PHPMailer
      * 差出人のセッター
      *
      * @access public
-     * @param string $from
-     * @param string $name
+     * @param string $from 差出人のアドレス
+     * @param string $name 差出人の名前
+     * @param boolean $auto
      * @return object $this
      */
-    public function setForm($from, $name="")
+    public function setForm($from, $name="", $auto = true)
     {
         parent::setFrom($from, $name);
 
