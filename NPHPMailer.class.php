@@ -6,7 +6,7 @@
  * @package PHPMailer
  */
 // PHPMailer読み込み
-require_once(__DIR__ . '/PHPMailer/PHPMailerAutoload.php');
+require_once(__DIR__ . "/PHPMailer/PHPMailerAutoload.php");
 
 class NPHPMailer extends PHPMailer
 {
@@ -15,11 +15,11 @@ class NPHPMailer extends PHPMailer
         parent::__construct();
 
         // タイムゾーン設定
-        date_default_timezone_set('Asia/Tokyo');
+        date_default_timezone_set("Asia/Tokyo");
 
         // 文字エンコーディングの設定
-        $this->CharSet  = "UTF-8";    // 文字セット(デフォルトは'ISO-8859-1')
-        $this->Encoding = "base64";  // エンコーディング(デフォルトは'8bit')
+        $this->CharSet  = "UTF-8";   // 文字セット(デフォルトは"ISO-8859-1")
+        $this->Encoding = "base64";  // エンコーディング(デフォルトは"8bit")
     }
 
     /**
@@ -37,14 +37,14 @@ class NPHPMailer extends PHPMailer
      * SMTP情報のセッター
      *
      * @access public
-     * @param string $host SMTPのホスト名 Gmail->'smtp.gmail.com'
-     * @param string $usrName ユーザー名 Gmail->'〇〇@gmail.com'
+     * @param string $host SMTPのホスト名 Gmail->"smtp.gmail.com"
+     * @param string $usrName ユーザー名 Gmail->"〇〇@gmail.com"
      * @param string $pass パスワード
      * @param string $type 通信方法 ssl|tls
      * @param int    $port ポート番号
      * @return object $this
      */
-    public function setSMTP($host, $usrName, $pass, $type='tls', $port=587)
+    public function setSMTP($host, $usrName, $pass, $type="tls", $port=587)
     {
         $this->isSMTP();
         $this->Host = $host;
@@ -222,7 +222,7 @@ class NPHPMailer extends PHPMailer
     public function send()
     {
         if (!parent::send()) {
-            trigger_error('Mailer Error: ' . $this->ErrorInfo, E_USER_NOTICE);
+            trigger_error("Mailer Error: " . $this->ErrorInfo, E_USER_NOTICE);
         }
     }
 
