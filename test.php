@@ -5,29 +5,34 @@
  * @author okutani
  */
 // NPHPMailer読み込み
-require_once './NPHPMailer.class.php';
+require_once "./NPHPMailer.class.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     /****************************
      * 送信情報設定
      ****************************/
-    $from    = 'from@test.com';
+    // 差出人
+    $from    = "from@test.com";
+    // 送信先(自分用)
     $to      = array(
-        'okutani.nt@gmail.com'
+        "okutani.nt@gmail.com"
     );
+    // 送信先(相手用)
     $reply   = $_POST["email"];
 
-    // 内容
-    $mySubject = 'お問い合わせがありました';
-    $myBody    = '名前: ' . $_POST["name"] .
-                 "\nメールアドレス: " . $_POST["email"];
-
-    $toSubject =  '[自動返信]お問い合わせありがとうございます';
+    // 件名(自分用)
+    $mySubject = "お問い合わせがありました";
+    // 内容(自分用)
+    $myBody    = "名前: " . $_POST["name"] . "\n" .
+                 "メールアドレス: " . $_POST["email"];
+    // 件名(相手用)
+    $toSubject =  "[自動返信]お問い合わせありがとうございます";
+    // 内容(相手用)
     $toBody    =  "以下の内容でメールを送信しました。\n\n" .
-                  "名前: " . $_POST["name"] .
-                  "\nメールアドレス: " . $_POST["email"] .
-                  "\n\n今後ともよろしくお願いいたします。";
+                  "名前: " . $_POST["name"] . "\n" .
+                  "メールアドレス: " . $_POST["email"] . "\n" .
+                  "今後ともよろしくお願いいたします。";
 
     // 自分宛
     NPHPMailer::_()
@@ -49,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ->setBody($toBody)
         ->send();
 
-    echo 'メールが送信されました！';
+    echo "メールが送信されました！";
 
     unset($_POST);
 }
