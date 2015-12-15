@@ -4,17 +4,17 @@ PHPMailerを日本語で便利に使うラッパークラス
 
 ## 使い方
 
-PHPMailerをダウンロードして設置しておく(PHPMailer5.2.14ver設置済み)
+PHPMailerをダウンロードして設置しておく(現在PHPMailer5.2.14設置済み)
 
 > * [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
 
 以下の形で使う
 
 ```php
-require_once './NPHPMailer.class.php';
+require_once "./NPHPMailer.class.php";
 
 NPHPMailer::_()
-    #->setSMTP          // サーバーで設定していたら不要
+    #->setSMTP() // サーバーで設定していたら不要
     ->setForm(差出人)
     ->addAddress(宛先)
     ->isHTML(false)

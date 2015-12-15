@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // 自分宛
     NPHPMailer::_()
-        #->setSMTP          // サーバーで設定していたら不要
+        #->setSMTP() // サーバーで設定していたら不要
         ->setForm($from)
         ->addAddress($to)
         ->isHTML(false)
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // 相手宛(自動返信用)
     NPHPMailer::_()
-        #->setSMTP          // サーバーで設定していたら不要
+        #->setSMTP() // サーバーで設定していたら不要
         ->setForm($from)
         ->addAddress($reply)
         ->isHTML(false)
