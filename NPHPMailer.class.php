@@ -66,7 +66,7 @@ class NPHPMailer extends PHPMailer
      * @param boolean $auto
      * @return object $this
      */
-    public function setForm($from, $name="", $auto = true)
+    public function setFrom($from, $name="", $auto = true)
     {
         parent::setFrom($from, $name);
 
