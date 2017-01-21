@@ -5,8 +5,6 @@
  * @author okutani
  * @package PHPMailer
  */
-// PHPMailer読み込み
-require_once(__DIR__ . "/PHPMailer/PHPMailerAutoload.php");
 
 class NPHPMailer extends PHPMailer
 {
@@ -15,11 +13,11 @@ class NPHPMailer extends PHPMailer
         parent::__construct();
 
         // タイムゾーン設定
-        date_default_timezone_set("Asia/Tokyo");
+        date_default_timezone_set('Asia/Tokyo');
 
         // 文字エンコーディングの設定
-        $this->CharSet  = "UTF-8";   // 文字セット(デフォルトは"ISO-8859-1")
-        $this->Encoding = "base64";  // エンコーディング(デフォルトは"8bit")
+        $this->CharSet  = "UTF-8";    // 文字セット(デフォルトは'ISO-8859-1')
+        $this->Encoding = "base64";  // エンコーディング(デフォルトは'8bit')
     }
 
     /**
@@ -37,14 +35,14 @@ class NPHPMailer extends PHPMailer
      * SMTP情報のセッター
      *
      * @access public
-     * @param string $host SMTPのホスト名 Gmail->"smtp.gmail.com"
-     * @param string $usrName ユーザー名 Gmail->"〇〇@gmail.com"
+     * @param string $host SMTPのホスト名 Gmail->'smtp.gmail.com'
+     * @param string $usrName ユーザー名 Gmail->'〇〇@gmail.com'
      * @param string $pass パスワード
      * @param string $type 通信方法 ssl|tls
      * @param int    $port ポート番号
      * @return object $this
      */
-    public function setSMTP($host, $usrName, $pass, $type="tls", $port=587)
+    public function setSMTP($host, $usrName, $pass, $type='tls', $port=587)
     {
         $this->isSMTP();
         $this->Host = $host;
@@ -61,14 +59,13 @@ class NPHPMailer extends PHPMailer
      * 差出人のセッター
      *
      * @access public
-     * @param string $from 差出人のアドレス
-     * @param string $name 差出人の名前
-     * @param boolean $auto
+     * @param string $from
+     * @param string $name
      * @return object $this
      */
     public function setFrom($from, $name="", $auto = true)
     {
-        parent::setFrom($from, $name);
+        parent::setFrom($from, $name, $auto);
 
         return $this;
     }
@@ -84,15 +81,40 @@ class NPHPMailer extends PHPMailer
     public function addAddress($to, $name="")
     {
         // 配列なら$nameを無視してforeachでセット
+        // 2次元配列の場合も考えられるのでdistributeAddress()で振り分けている
         if (is_array($to)) {
-            foreach ($to as $value) {
-                parent::addAddress($value);
+            foreach ($to as $type => $address) {
+                $this->distributeAddress($type, $address);
             }
         } else {
             parent::addAddress($to, $name);
         }
 
         return $this;
+    }
+
+    /**
+     * to, cc, bccを振り分けるためのメソッド
+     *
+     * @param  int|string $type int→to, cc, bccの指定なし。string→to, cc, bccのいずれか
+     * @param  string $address mail_config.ymlで指定したメールアドレス
+     */
+    private function distributeAddress($type, $address)
+    {
+        if (is_array($address)) {
+            foreach ($address as $value) {
+                if ($type === 'to') {
+                    parent::addAddress($value);
+                } elseif ($type === 'cc') {
+                    parent::addCC($value);
+                } elseif ($type === 'bcc') {
+                    parent::addBCC($value);
+                }
+            }
+        } else {
+            parent::addAddress($address);
+        }
+
     }
 
     /**
@@ -151,7 +173,7 @@ class NPHPMailer extends PHPMailer
      * @param string $disposition Disposition to use
      * @return object $this
      */
-    public function addAttachment($path, $name="", $encoding="base64", $type="", $disposition = "attachment")
+    public function addAttachment($path, $name="", $encoding="base64", $type="", $disposition="attachment")
     {
         parent::addAttachment($path, $name, $encoding, $type, $disposition);
 
@@ -222,7 +244,7 @@ class NPHPMailer extends PHPMailer
     public function send()
     {
         if (!parent::send()) {
-            trigger_error("Mailer Error: " . $this->ErrorInfo, E_USER_NOTICE);
+            trigger_error('Mailer Error: ' . $this->ErrorInfo, E_USER_NOTICE);
         }
     }
 
