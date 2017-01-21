@@ -13,11 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      * 送信情報設定
      ****************************/
     // 差出人
-    $from    = "from@test.com";
+    $from    = "from@example.com";
     // 送信先(自分用)
-    $to      = array(
-        "okutani.nt@gmail.com"
-    );
+    $to        = [
+        "myaddress@example.com"
+    ];
     // 送信先(相手用)
     $reply   = $_POST["email"];
 
