@@ -1,10 +1,8 @@
 <?php
-require_once dirname(__DIR__) . '../../src/NPHPMailer/NPHPMailer.class.php';
-namespace OkutaniT\NPHPMailer\Tests;
+namespace OkutaniT\Tests;
 use OkutaniT\NPHPMailer;
-use PHPUnit_Framework_TestCase
 
-class NPHPMailerTest extends PHPUnit_Framework_TestCase {
+class NPHPMailerTest extends \PHPUnit_Framework_TestCase {
 
     public function setUp()
     {
@@ -22,7 +20,7 @@ class NPHPMailerTest extends PHPUnit_Framework_TestCase {
             "テストメール\n\n" .
             "今後ともよろしくお願いいたします。";
 
-        $this->filepath = dirname(__DIR__) . "/testimg.png";
+        $this->filepath = dirname(__DIR__) . "../../testimg.png";
     }
 
     public function testSimpleSend()

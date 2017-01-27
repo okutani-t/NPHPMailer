@@ -10,12 +10,12 @@
          stopOnFailure="false"
          syntaxCheck="false"
          verbose="false">
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="false">
-            <directory>../src/</directory>
-        </whitelist>
-    </filter>
-    <testsuite name="OkutaniT\NPHPMailer Test Suite">
-        <directory>.</directory>
-    </testsuite>
+  <filter>
+    <whitelist>
+      <directory>../src/</directory>
+    </whitelist>
+  </filter>
+  <testsuite name="OkutaniT\NPHPMailer Test Suite">
+    <directory>.</directory>
+  </testsuite>
 </phpunit>

@@ -21,8 +21,9 @@
         "test": "phpunit"
     },
     "autoload": {
-        "psr-4": {
-            "OkutaniT\\NPHPMailer\\": "src"
+        "psr-0": {
+            "OkutaniT\\": "src/",
+            "OkutaniT\\Tests\\": "tests/"
         }
     },
     "license": "LGPL-2.1"

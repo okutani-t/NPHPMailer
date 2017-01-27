@@ -6,7 +6,7 @@
  * @package NPHPMailer
  */
 
-namespace OkutaniT\NPHPMailer;
+namespace OkutaniT;
 use PHPMailer;
 
 class NPHPMailer extends PHPMailer
