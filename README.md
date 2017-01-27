@@ -1,18 +1,20 @@
 # NPHPMAILER
 
-PHPMailerを日本語で便利に使うラッパークラス
+[PHPMailer](https://github.com/PHPMailer/PHPMailer)を日本語で便利に使うラッパークラス
 
-## 使い方
+## Description
 
-PHPMailerを導入しておく
+NPHPMailerは、日本語メールをPHPMailerで送信する際に設定するべき「内部エンコーディング」や「文字コードの指定」を内部で設定してくれるラッパークラスです。また、チェーンメソッドを利用して送信できるので、コード量を少なくしてくれます。
 
-> * [https://github.com/PHPMailer/PHPMailer](https://github.com/PHPMailer/PHPMailer)
+## Usage
 
-以下の形で使う
+以下の形でメールを送信する。
 
 ```php
+use OkutaniT\NPHPMailer;
+
 NPHPMailer::_()
-    #->setSMTP() // サーバーで設定していたら不要
+    #->setSMTP(ホスト, ユーザー, パスワード) // サーバーで設定していたら不要
     ->setFrom(差出人)
     ->addAddress(宛先)
     ->isHTML(false)
@@ -21,26 +23,21 @@ NPHPMailer::_()
     ->send();
 ```
 
-## 実装例
+具体的には、次のように利用する。
 
 ```php
-// 差出人
-$from    = "from@example.com";
-// 送信先(自分用)
-$to      = [
+use OkutaniT\NPHPMailer;
+
+$from      = "from@example.com";
+$to        = [
   "myaddress@example.com"
 ];
-// 送信先(相手用)
-$reply   = $_POST["email"];
+$reply     = $_POST["email"];
 
-// 件名(自分用)
 $mySubject = "お問い合わせがありました";
-// 内容(自分用)
 $myBody    = "名前: " . $_POST["name"] . "\n" .
 "メールアドレス: " . $_POST["email"];
-// 件名(相手用)
 $toSubject =  "[自動返信]お問い合わせありがとうございます";
-// 内容(相手用)
 $toBody    =  "以下の内容でメールを送信しました。\n\n" .
 "名前: " . $_POST["name"] . "\n" .
 "メールアドレス: " . $_POST["email"] . "\n" .
@@ -68,4 +65,70 @@ NPHPMailer::_()
 
 ```
 
-author: okutani
+
+## Install
+
+composerを使って導入する。ちなみに、NPHPMailer導入時に最新版のPHPMailerが導入されるので、PHPMailerの記述はいらない。
+
+composer.jsonに以下を記述。
+
+```javascript
+{
+    "require": {
+        "okutani-t/nphpmailer": "~1.0"
+    }
+}
+
+```
+
+composer installで導入。
+
+```
+$ composer install
+```
+
+あとは使いたい場所でrequire＆useしてあげればOK。
+
+```php
+<?php
+require __DIR__ . "/vendor/autoload.php";
+use OkutaniT\NPHPMailer;
+
+// code...
+```
+
+## Contribution
+
+バグを見つけた場合や追加実装をおこなう場合、以下の手順でプルリクエストを送ってください。
+
+１. フォーク＆クローン
+２. ブランチを切る
+
+```
+$ git checkout -b my-new-feature
+```
+
+３. 変更をコミット
+
+```
+$ git add .
+$ git commit -m "修正内容"
+```
+
+４. テスト
+
+```
+$ composer test tests
+```
+
+なお、テスト内容は ```tests/``` 以下に記述してください。
+
+５. プルリクエストを作成
+
+## LICENCE
+
+LGPL-2.1
+
+## Author
+
+[http://okutani.net](http://okutani.net)

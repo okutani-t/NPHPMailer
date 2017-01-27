@@ -5,7 +5,6 @@
  * @author okutani
  * @package NPHPMailer
  */
-
 namespace OkutaniT;
 use PHPMailer;
 
@@ -66,8 +65,9 @@ class NPHPMailer extends PHPMailer
      * 差出人のセッター
      *
      * @access public
-     * @param string $from
-     * @param string $name
+     * @param  string $from
+     * @param  string $name
+     * @param  bool   $auto
      * @return object $this
      */
     public function setFrom($from, $name = "", $auto = true)
@@ -82,8 +82,8 @@ class NPHPMailer extends PHPMailer
      *
      * @access public
      * @param  string|array $to
-     * @param  string $name
-     * @return object $this
+     * @param  string       $name
+     * @return object       $this
      */
     public function addAddress($to, $name = "")
     {
@@ -167,7 +167,7 @@ class NPHPMailer extends PHPMailer
      * HTMLメールにするかどうか
      *
      * @access public
-     * @param bool $isHTML
+     * @param  bool   $isHTML
      * @return object $this
      */
     public function isHTML($isHTML=true)
@@ -181,7 +181,7 @@ class NPHPMailer extends PHPMailer
      * 件名のセッター
      *
      * @access public
-     * @param string $subject
+     * @param  string $subject
      * @return object $this
      */
     public function setSubject($subject="")
@@ -195,7 +195,7 @@ class NPHPMailer extends PHPMailer
      * 本文のセッター(HTML)
      *
      * @access public
-     * @param string $body
+     * @param  string $body
      * @return object $this
      */
     public function setBody($body="")
@@ -209,7 +209,7 @@ class NPHPMailer extends PHPMailer
      * 本文のセッター(non-HTML)
      *
      * @access public
-     * @param string $body
+     * @param  string $body
      * @return object $this
      */
     public function setAltBody($body="")
@@ -228,7 +228,7 @@ class NPHPMailer extends PHPMailer
      */
     public function setCharSet($charset = "UTF-8")
     {
-        $this->CharSet  = $charset;
+        $this->CharSet = $charset;
 
         return $this;
     }
@@ -248,11 +248,11 @@ class NPHPMailer extends PHPMailer
     }
 
     /**
-     * デバッグモード
+     * SMTPデバッグモード
      *
      * @access public
-     * @param bool|int $smtpdebug [true,false,1,2]
-     * @return object $this
+     * @param  bool|int $smtpdebug
+     * @return object   $this
      */
     public function setSMTPDebug($smtpdebug = false)
     {
@@ -263,6 +263,7 @@ class NPHPMailer extends PHPMailer
 
     /**
      * 送信
+     * 注:) 送信だけチェーンメソッドの最後に記述する
      *
      * @access public
      */
@@ -274,10 +275,10 @@ class NPHPMailer extends PHPMailer
     }
 
     /**
-     * to, cc, bccを振り分けるためのメソッド
+     * 連想配列で渡されたキー（to, cc, bcc）を振り分けるメソッド
      *
-     * @param  int|string $type
-     * @param  string $address
+     * @param int|string $type
+     * @param string     $address
      */
     private function distributeAddress($type, $address)
     {
