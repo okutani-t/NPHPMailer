@@ -1,10 +1,10 @@
 <?php
-
-namespace NPHPMailer\Tests;
 require_once dirname(__DIR__) . '../../src/NPHPMailer/NPHPMailer.class.php';
-use NPHPMailer\NPHPMailer;
+namespace OkutaniT\NPHPMailer\Tests;
+use OkutaniT\NPHPMailer;
+use PHPUnit_Framework_TestCase
 
-class NPHPMailerTest extends \PHPUnit_Framework_TestCase {
+class NPHPMailerTest extends PHPUnit_Framework_TestCase {
 
     public function setUp()
     {

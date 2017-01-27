@@ -15,7 +15,7 @@
             <directory>../src/</directory>
         </whitelist>
     </filter>
-    <testsuite name="NPHPMailer Test Suite">
+    <testsuite name="OkutaniT\NPHPMailer Test Suite">
         <directory>.</directory>
     </testsuite>
 </phpunit>

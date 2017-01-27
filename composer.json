@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NPHPMailer\\": "src/NPHPMailer/"
+            "OkutaniT\\NPHPMailer\\": "src"
         }
     },
     "license": "LGPL-2.1"
