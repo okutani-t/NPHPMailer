@@ -263,8 +263,8 @@ class NPHPMailer extends PHPMailer
 
     /**
      * 送信
-     * 注:) 送信だけチェーンメソッドの最後に記述する
      *
+     * 注:) 送信だけチェーンメソッドの最後に記述する
      * @access public
      */
     public function send()

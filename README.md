@@ -4,7 +4,7 @@
 
 ## Description
 
-NPHPMailerは、日本語メールをPHPMailerで送信する際に設定するべき「内部エンコーディング」や「文字コードの指定」を内部で設定してくれるラッパークラスです。また、チェーンメソッドを利用して送信できるので、コード量を少なくしてくれます。
+**NPHPMailer**は、日本語メールをPHPMailerで送信する際に設定するべき「内部エンコーディング」や「文字コードの指定」を内部で設定してくれるラッパークラスです。また、チェーンメソッドを利用して送信できるので、コード量を少なくしてくれます。
 
 ## Usage
 
@@ -17,7 +17,6 @@ NPHPMailer::_()
     #->setSMTP(ホスト, ユーザー, パスワード) // サーバーで設定していたら不要
     ->setFrom(差出人)
     ->addAddress(宛先)
-    ->isHTML(false)
     ->setSubject(件名)
     ->setBody(内容)
     ->send();
@@ -48,7 +47,6 @@ NPHPMailer::_()
   ->setSMTP("smtp.gmail.com", "〇〇@gmail.com", "Gmailのパスワード") # gmailの場合
   ->setFrom($from)
   ->addAddress($to)
-  ->isHTML(false)
   ->setSubject($mySubject)
   ->setBody($myBody)
   ->send();
@@ -58,13 +56,60 @@ NPHPMailer::_()
   ->setSMTP("smtp.gmail.com", "〇〇@gmail.com", "Gmailのパスワード")
   ->setFrom($from)
   ->addAddress($reply)
-  ->isHTML(false)
   ->setSubject($toSubject)
   ->setBody($toBody)
   ->send();
 
 ```
 
+### HTMLメール
+
+HTMLメールを利用する場合は以下のメソッドを利用します。
+
+```
+->isHTML(true)
+```
+
+### 添付ファイル
+
+添付ファイルは以下のメソッドを使います。
+
+```
+->addAttachment(ファイルパス, ファイル名, エンコーディング, MIMEタイプ)
+```
+
+### CC, BCC
+
+CC, BCCは以下。
+
+```
+->addCC(アドレス, 名前)
+->addBCC(アドレス, 名前)
+```
+
+### 文字コード
+
+文字コードを変更する場合は以下。デフォルトはUTF-8。
+
+```
+->setCharSet("ISO-8859-1")
+```
+
+### エンコード
+
+エンコードを変更する場合は以下。デフォルトはbase64。
+
+```
+->setEncoding("8bit")
+```
+
+### SMTPデバッグモード
+
+SMTPデバッグモードを利用したい場合は以下。
+
+```
+->setSMTPDebug(true)
+```
 
 ## Install
 
@@ -102,6 +147,7 @@ use OkutaniT\NPHPMailer;
 バグを見つけた場合や追加実装をおこなう場合、以下の手順でプルリクエストを送ってください。
 
 １. フォーク＆クローン
+
 ２. ブランチを切る
 
 ```
